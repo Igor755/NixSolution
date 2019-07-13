@@ -1,6 +1,5 @@
 package com.shop.nixsolution.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,67 +7,50 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shop.nixsolution.R;
-import com.shop.nixsolution.room.Product;
+import com.shop.nixsolution.productall.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class DataRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapter.ViewHolder> {
 
-    private List<Product> dataModels = new ArrayList<>();
-    private OnDeleteListener onDeleteListener;
-    private Context context;
+    List<Product> products;
 
-    public DataRecyclerAdapter(Context context, List<Product> dataModels) {
-        this.context = context;
-        this.dataModels = dataModels;
+
+    public DataRecyclerAdapter(List<Product> products) {
+        this.products = products;
+    }
+
+
+    @Override
+    public DataRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+
+
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.one_item_recycler, viewGroup, false);
+
+        return new ViewHolder(view);
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_item_recycler, parent, false);
-        return new NewsViewHolder(view);
-    }
+    public void onBindViewHolder(DataRecyclerAdapter.ViewHolder viewHolder, int i) {
 
-    @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        final NewsViewHolder viewHolder = (NewsViewHolder) holder;
-        viewHolder.title.setText(dataModels.get(position).getName());
+        Product my_product = this.products.get(i);
+        viewHolder.textView.setText(my_product.getName());
 
     }
 
     @Override
     public int getItemCount() {
-        return dataModels.size();
+        return products.size();
     }
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
-    public class NewsViewHolder extends RecyclerView.ViewHolder {
+        public TextView textView;
 
-        @BindView(R.id.title)
-        public TextView title;
-        @BindView(R.id.delete)
-        public TextView delete;
-
-        public NewsViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-            delete.setOnClickListener(view -> {
-                onDeleteListener.onDelete(dataModels.get(getAdapterPosition()));
-                dataModels.remove(getAdapterPosition());
-                notifyItemRemoved(getAdapterPosition());
-            });
+
+            textView = itemView.findViewById(R.id.name);
         }
     }
-
-    public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
-        this.onDeleteListener = onDeleteListener;
-    }
-
-    public interface OnDeleteListener {
-        void onDelete(Product dataModel);
-    }
-
 }

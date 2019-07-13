@@ -1,4 +1,4 @@
-package com.shop.nixsolution.room;
+package com.shop.nixsolution.productall;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -13,7 +13,7 @@ import java.util.List;
 public interface ProductDao {
 
     @Query("SELECT * FROM product")
-    List<Product> getAll();
+    List<Product> getAllProducts();
 
     /*@Query("SELECT * FROM product WHERE id = :id")
     Product getById(String id);*/
