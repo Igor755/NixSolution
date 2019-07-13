@@ -5,8 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
 
+
     <item
         android:id="@+id/action_add"
-        android:title="Add"
+        android:title="Menu"
+        android:icon="@drawable/add"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/select_all"
+        android:title="select all"
+        android:icon="@drawable/add"
+        app:showAsAction="never"/>
 </menu>

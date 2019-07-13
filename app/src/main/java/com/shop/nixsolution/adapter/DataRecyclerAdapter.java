@@ -4,6 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.shop.nixsolution.R;
@@ -36,6 +39,8 @@ public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapte
 
         Product my_product = this.products.get(i);
         viewHolder.textView.setText(my_product.getName());
+        viewHolder.checkBox.setChecked(false);
+
 
     }
 
@@ -46,11 +51,22 @@ public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textView;
+        public CheckBox checkBox;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.name);
+            checkBox = itemView.findViewById(R.id.checkBox);
+
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+                }
+
+            });
         }
     }
 }

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.shop.nixsolution.adapter.DataRecyclerAdapter;
@@ -44,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
 
-        //db.productDao().delete(new Product(1,"tomato"));
+     /*   db.productDao().insert(new Product(1,"tomato"));
+        db.productDao().insert(new Product(2,"potato"));*/
 
         List<Product> products = db.productDao().getAllProducts();
 
@@ -67,5 +70,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_add:
+                ////////////
+
+                return true;
+            case R.id.select_all:
+                ////////////
+
+                return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add_button, menu);
+        return true;
     }
 }
