@@ -4,24 +4,23 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-
-@Entity
-public class Buy {
+import java.io.Serializable;
 
 
-    @PrimaryKey
+public class Buy  {
+
+
     private int id;
 
-    @ColumnInfo(name = "name")
     public String name;
-
+/*
     @ColumnInfo(name = "date")
-    public String date;
+    public String date;*/
 
-    public Buy(int id, String name, String date) {
+    public Buy(int id, String name) {
         this.id = id;
         this.name = name;
-        this.date = date;
+       // this.date = date;
     }
 
     public int getId() {
@@ -40,11 +39,11 @@ public class Buy {
         this.name = name;
     }
 
-    public String getDate() {
+   /* public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }
+    }*/
 }
