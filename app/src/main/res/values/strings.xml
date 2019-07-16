@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NixSolution</string>
+    <string name="add_recycler">add in recycler</string>
 </resources>

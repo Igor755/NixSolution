@@ -11,6 +11,9 @@ import com.shop.nixsolution.productall.Product;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapter.DataViewHolder> {
 
@@ -65,14 +68,18 @@ public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapte
 
     public class DataViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+       // public TextView textView;
         private View view;
+
+        @BindView(R.id.name) TextView textView;
+        //@BindView(R.id.job_title) TextView jobTitle;
 
         public DataViewHolder(View itemView) {
             super(itemView);
 
+            ButterKnife.bind(this, itemView);
             view = itemView;
-            textView = itemView.findViewById(R.id.name);
+            //textView = itemView.findViewById(R.id.name);
 
             itemView.setOnClickListener((View v) -> {
 

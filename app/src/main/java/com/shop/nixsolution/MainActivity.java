@@ -21,11 +21,20 @@ import com.shop.nixsolution.productbuy.BuyProductActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-    FloatingActionButton fab;
+
+    @BindView(R.id.recyclerView) RecyclerView recyclerView;
+    @BindView(R.id.fab) FloatingActionButton fab;
+
+
+
+   // FloatingActionButton fab;
     DataRecyclerAdapter adapter;
-    RecyclerView recyclerView;
+   // RecyclerView recyclerView;
     ArrayList<Product> act2_products = new ArrayList<>();
 
     static List<Product> products = new ArrayList<>();
@@ -34,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
 
 
         DatabaseHelper db = Room.databaseBuilder(getApplicationContext(), DatabaseHelper.class, "production")
@@ -45,14 +56,13 @@ public class MainActivity extends AppCompatActivity {
         /*db.productDao().insert(new Product(1,"tomato"));
         db.productDao().insert(new Product(2,"tomato"));
         db.productDao().insert(new Product(3,"egg"));*/
-
-
         //db.productDao().insert(new Product(1,"potato"));
+
         products = db.productDao().getAllProducts();
 
 
-        fab = findViewById(R.id.fab);
-        recyclerView = findViewById(R.id.recyclerView);
+       // fab = findViewById(R.id.fab);
+        //recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         adapter = new DataRecyclerAdapter(products);
@@ -107,8 +117,10 @@ public class MainActivity extends AppCompatActivity {
                         act2_products.add(model);
                         model.setSelected(false);
                     }
-                    model.setSelected(false);
                 }
+                Toast.makeText(MainActivity.this, R.string.add_recycler, Toast.LENGTH_SHORT).show();
+
+
                 return true;
             case R.id.select_all:
                 ////////////
