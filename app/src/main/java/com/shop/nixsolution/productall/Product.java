@@ -4,11 +4,12 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.io.Serializable;
 
 @Entity
-public class Product implements Serializable {
+public class Product implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -32,6 +33,24 @@ public class Product implements Serializable {
         this.isSelected = isSelected;
     }
 
+    protected Product(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        isSelected = in.readByte() != 0;
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
     public boolean isSelected() {
         return isSelected;
     }
@@ -54,5 +73,17 @@ public class Product implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeByte((byte) (isSelected ? 1 : 0));
     }
 }

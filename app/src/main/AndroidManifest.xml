@@ -20,7 +20,7 @@
 
         </activity>
         <activity
-            android:name=".productbuy.BuyProduct"
+            android:name=".productbuy.BuyProductActivity"
             android:label="@string/app_name">
         </activity>
     </application>

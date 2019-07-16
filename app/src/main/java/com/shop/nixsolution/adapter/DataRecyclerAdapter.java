@@ -5,11 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.TextView;
-
 import com.shop.nixsolution.R;
 import com.shop.nixsolution.productall.Product;
 
@@ -48,16 +44,16 @@ public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapte
 
         Product my_product = this.products.get(i);
         viewHolder.textView.setText(my_product.getName());
-       // viewHolder.view.setBackgroundColor(my_product.isSelected() ? Color.CYAN : Color.WHITE);
+        viewHolder.view.setBackgroundColor(my_product.isSelected() ? Color.CYAN : Color.WHITE);
 
-        /*viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 my_product.setSelected(!my_product.isSelected());
                 viewHolder.view.setBackgroundColor(my_product.isSelected() ? Color.CYAN : Color.WHITE);
 
             }
-        });*/
+        });
 
 
     }
@@ -70,12 +66,12 @@ public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapte
     public class DataViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textView;
-       // private View view;
+        private View view;
 
         public DataViewHolder(View itemView) {
             super(itemView);
 
-            //view = itemView;
+            view = itemView;
             textView = itemView.findViewById(R.id.name);
 
             itemView.setOnClickListener((View v) -> {
