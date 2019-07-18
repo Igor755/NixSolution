@@ -19,15 +19,6 @@ public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapte
 
     List<Product> products;
 
-    private static OnItemClickListener listener;
-
-    public interface OnItemClickListener {
-        void onItemClick(View itemView, int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
 
     public DataRecyclerAdapter(List<Product> products) {
         this.products = products;
@@ -68,26 +59,15 @@ public class DataRecyclerAdapter extends RecyclerView.Adapter<DataRecyclerAdapte
 
     public class DataViewHolder extends RecyclerView.ViewHolder {
 
-       // public TextView textView;
         private View view;
 
         @BindView(R.id.name) TextView textView;
-        //@BindView(R.id.job_title) TextView jobTitle;
 
         public DataViewHolder(View itemView) {
             super(itemView);
 
             ButterKnife.bind(this, itemView);
             view = itemView;
-            //textView = itemView.findViewById(R.id.name);
-
-            itemView.setOnClickListener((View v) -> {
-
-                    if (DataRecyclerAdapter.listener != null) {
-                        DataRecyclerAdapter.listener.onItemClick(itemView, getLayoutPosition());
-                    }
-                });
-
 
         }
 
